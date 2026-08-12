@@ -1,21 +1,34 @@
-# 📝 Minhas Anotações: Comandos SQL e DDL
+# 🗄️ Resumo SQL: Categorias e Comandos DDL
 
-Pelo que eu entendi nas aulas, os comandos do SQL são separados em "famílias", dependendo do que a gente quer fazer no banco de dados[cite: 1]. 
+## 1. Classificação dos Comandos SQL
+A linguagem SQL é dividida em cinco categorias principais, baseadas na finalidade da operação:
 
-## 1. O resumão dos comandos SQL
-*   **DDL (Definição):** É o que a gente usa para mexer na **estrutura** das coisas, tipo criar ou apagar tabelas e o próprio banco[cite: 1].
-*   **DQL (Consulta):** Usado só para buscar e ler os dados[cite: 1]. Basicamente é o reino do comando `SELECT`[cite: 1].
-*   **DML (Manipulação):** É onde a gente realmente mexe na informação[cite: 1]. Serve para adicionar (`INSERT`), atualizar (`UPDATE`) ou apagar (`DELETE`) dados lá de dentro[cite: 1].
-*   **DCL (Controle):** Essa é a parte de segurança, para dar ou tirar permissão de acesso de alguém[cite: 1].
-*   **TCL (Transação):** Serve para salvar as coisas em definitivo no banco ou desfazer tudo se der algum erro no meio do caminho[cite: 1].
+*   **DDL (Definição):** Estrutura os objetos do banco de dados. (`CREATE`, `ALTER`, `DROP`)
+*   **DQL (Consulta):** Recupera e visualiza as informações. (`SELECT`)
+*   **DML (Manipulação):** Gerencia os registros nas tabelas. (`INSERT`, `UPDATE`, `DELETE`)
+*   **DCL (Controle):** Administra permissões e acessos de usuários. (`GRANT`, `REVOKE`)
+*   **TCL (Transação):** Controla a integridade das operações e salvamentos. (`COMMIT`, `ROLLBACK`, `SAVEPOINT`)
 
 ---
 
-## 2. Focando no DDL (A estrutura do banco)
-O professor explicou que o DDL é tipo o "esqueleto" do nosso banco de dados[cite: 2]. É com ele que a gente monta o lugar onde os dados vão ficar guardados. 
+## 2. Foco em DDL (Data Definition Language)
+A DDL atua diretamente na modelagem da estrutura (*blueprint*) do sistema. Ela não manipula os dados em si, mas sim os "contêineres" (tabelas e bancos) que vão armazená-los.
 
-Os três comandos que a gente mais usa aqui são:
+*   **`CREATE`:** Instancia novos objetos do zero. Ao criar uma tabela, é obrigatório definir os atributos (colunas) e a tipagem de dados de cada um.
+*   **`ALTER`:** Modifica a estrutura de um objeto já existente (como adicionar ou remover uma coluna de uma tabela) sem precisar excluí-lo.
+*   **`DROP`:** Operação destrutiva. Exclui permanentemente a estrutura do objeto e todos os registros armazenados em seu interior.
 
-*   **`CREATE` (Criar):** Usado para construir bancos ou tabelas do zero[cite: 2]. Detalhe: na hora de criar uma tabela, a gente já precisa dizer quais são as colunas e os tipos de dados que vão entrar nelas[cite: 2].
-*   **`ALTER` (Alterar):** Salva muito a vida quando precisamos mudar algo numa tabela que já existe[cite: 2]. Dá para colocar uma coluna nova ou remover uma antiga sem precisar deletar a tabela inteira[cite: 2].
-*   **`DROP` (Excluir):** É o botão de autodestruição! Esse comando exclui a tabela inteira de uma vez e leva todos os registros que estavam dentro dela embora[cite: 2].
+### 💻 Exemplo Prático (Sintaxe Básica):
+
+```sql
+-- 1. CREATE: Cria a tabela e define os tipos
+CREATE TABLE Products (
+  ProductID INT,
+  ProductName VARCHAR(100)
+);
+
+-- 2. ALTER: Modifica a estrutura adicionando uma coluna
+ALTER TABLE Products ADD Price DECIMAL;
+
+-- 3. DROP: Apaga a tabela e seus dados permanentemente
+DROP TABLE Products;
