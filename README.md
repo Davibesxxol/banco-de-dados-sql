@@ -1,47 +1,21 @@
-# 🗄️ Resumo da Aula: Tipos de Comandos SQL e Foco em DDL
+# 📝 Minhas Anotações: Comandos SQL e DDL
 
-A linguagem SQL é dividida em subconjuntos baseados na finalidade dos comandos[cite: 1]. Abaixo está o detalhamento de cada categoria e um aprofundamento prático na linguagem de definição de dados.
+Pelo que eu entendi nas aulas, os comandos do SQL são separados em "famílias", dependendo do que a gente quer fazer no banco de dados[cite: 1]. 
 
-## 1. Visão Geral das Categorias SQL
-
-*   **DDL (Linguagem de Definição de Dados):** Usada para definir ou modificar a estrutura (o esqueleto) do banco de dados[cite: 1].
-    *   `CREATE`: Cria novos bancos de dados ou tabelas[cite: 1].
-    *   `ALTER`: Modifica a estrutura existente[cite: 1].
-    *   `DROP`: Deleta um banco ou tabela[cite: 1].
-
-*   **DQL (Linguagem de Consulta de Dados):** Usada para recuperar informações[cite: 1].
-    *   `SELECT`: O comando principal para buscar e visualizar dados[cite: 1].
-
-*   **DML (Linguagem de Manipulação de Dados):** Usada para gerenciar os dados em si, dentro das tabelas[cite: 1].
-    *   `INSERT`: Adiciona novos registros[cite: 1].
-    *   `UPDATE`: Modifica registros já existentes[cite: 1].
-    *   `DELETE`: Remove registros[cite: 1].
-
-*   **DCL (Linguagem de Controle de Dados):** Usada para gerenciar as permissões e a segurança do sistema[cite: 1].
-    *   `GRANT`: Concede privilégios de acesso aos usuários[cite: 1].
-    *   `REVOKE`: Revoga privilégios concedidos[cite: 1].
-
-*   **TCL (Linguagem de Controle de Transações):** Usada para gerenciar as transações e garantir a integridade dos processos[cite: 1].
-    *   `COMMIT`: Salva as mudanças permanentemente[cite: 1].
-    *   `ROLLBACK`: Desfaz mudanças caso ocorra um erro durante a transação[cite: 1].
-    *   `SAVEPOINT`: Define um ponto específico para permitir um retorno (rollback) parcial[cite: 1].
+## 1. O resumão dos comandos SQL
+*   **DDL (Definição):** É o que a gente usa para mexer na **estrutura** das coisas, tipo criar ou apagar tabelas e o próprio banco[cite: 1].
+*   **DQL (Consulta):** Usado só para buscar e ler os dados[cite: 1]. Basicamente é o reino do comando `SELECT`[cite: 1].
+*   **DML (Manipulação):** É onde a gente realmente mexe na informação[cite: 1]. Serve para adicionar (`INSERT`), atualizar (`UPDATE`) ou apagar (`DELETE`) dados lá de dentro[cite: 1].
+*   **DCL (Controle):** Essa é a parte de segurança, para dar ou tirar permissão de acesso de alguém[cite: 1].
+*   **TCL (Transação):** Serve para salvar as coisas em definitivo no banco ou desfazer tudo se der algum erro no meio do caminho[cite: 1].
 
 ---
 
-## 2. Aprofundamento: DDL (Data Definition Language)
+## 2. Focando no DDL (A estrutura do banco)
+O professor explicou que o DDL é tipo o "esqueleto" do nosso banco de dados[cite: 2]. É com ele que a gente monta o lugar onde os dados vão ficar guardados. 
 
-Enquanto o DQL consulta e o DML manipula, o DDL permite gerenciar a planta estrutural (*blueprint*) do nosso banco de dados. É com ele que moldamos os objetos para receber os dados.
+Os três comandos que a gente mais usa aqui são:
 
-### A. CREATE (Criando Objetos)
-Usado para construir novos contêineres e tabelas do zero. Ao criar uma tabela, é obrigatório definir as colunas e seus respectivos tipos de dados.
-
-```sql
--- Criação de um novo banco de dados (contêiner)
-CREATE DATABASE Sales;
-
--- Criação de uma tabela estruturada
-CREATE TABLE Products (
-  ProductID INT,
-  ProductName VARCHAR(100),
-  Price DECIMAL
-);
+*   **`CREATE` (Criar):** Usado para construir bancos ou tabelas do zero[cite: 2]. Detalhe: na hora de criar uma tabela, a gente já precisa dizer quais são as colunas e os tipos de dados que vão entrar nelas[cite: 2].
+*   **`ALTER` (Alterar):** Salva muito a vida quando precisamos mudar algo numa tabela que já existe[cite: 2]. Dá para colocar uma coluna nova ou remover uma antiga sem precisar deletar a tabela inteira[cite: 2].
+*   **`DROP` (Excluir):** É o botão de autodestruição! Esse comando exclui a tabela inteira de uma vez e leva todos os registros que estavam dentro dela embora[cite: 2].
