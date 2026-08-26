@@ -35,3 +35,33 @@ ALTER TABLE produtos ADD preco DECIMAL(10,2);
 
 -- 3. DROP: Excluindo a tabela e os dados de forma permanente
 DROP TABLE produtos;
+
+
+Aula 3
+
+Nessa aula, a gente focou em entender como a DML (Data Manipulation Language) funciona na prática para mexer nos dados de dentro das tabelas, saindo da parte de criar estrutura (DDL).
+
+1. DML vs DDL
+DDL (Definição): É o que a gente usa para construir e definir o "recipiente" (a estrutura das tabelas e do banco).
+
+DML (Manipulação): É o que a gente usa para gerenciar o "conteúdo" de dentro, alterando os dados reais que ficam salvos.
+
+2. Comandos Principais de DML
+Basicamente, a gente usa três comandos principais para manipular esses dados:
+
+INSERT (Adicionar Dados)
+Usado para colocar novas linhas de dados na tabela. A gente viu que dá para fazer de dois jeitos:
+
+Método 1: Entrada Manual (VALUES)
+
+Método 2: Inserção por Consulta (SELECT)
+Dá para puxar e inserir dados em uma tabela consultando direto de outra tabela.
+
+UPDATE (Modificar Dados)
+Usado para alterar informações que já estão cadastradas.
+
+DELETE (Remover Dados)
+Usado para apagar registros que a gente não quer mais.
+
+Cuidado importante: Do mesmo jeito que o update, a gente tem que usar o WHERE para não apagar a tabela inteira sem querer.
+
