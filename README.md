@@ -1,34 +1,37 @@
-# 🗄️ Resumo SQL: Categorias e Comandos DDL
+Na aula 2, aprendemos como a linguagem SQL é dividida e como estruturar nossas primeiras tabelas no banco de dados. Abaixo está o resumo dos conceitos.
 
-## 1. Classificação dos Comandos SQL
-A linguagem SQL é dividida em cinco categorias principais, baseadas na finalidade da operação:
+1. Categorias do SQL
+Aprendemos que os comandos são divididos em cinco grupos principais, dependendo da operação:
 
-*   **DDL (Definição):** Estrutura os objetos do banco de dados. (`CREATE`, `ALTER`, `DROP`)
-*   **DQL (Consulta):** Recupera e visualiza as informações. (`SELECT`)
-*   **DML (Manipulação):** Gerencia os registros nas tabelas. (`INSERT`, `UPDATE`, `DELETE`)
-*   **DCL (Controle):** Administra permissões e acessos de usuários. (`GRANT`, `REVOKE`)
-*   **TCL (Transação):** Controla a integridade das operações e salvamentos. (`COMMIT`, `ROLLBACK`, `SAVEPOINT`)
+DDL (Definição): Monta a estrutura dos objetos do banco. (CREATE, ALTER, DROP)
 
----
+DQL (Consulta): Busca e exibe as informações. (SELECT)
 
-## 2. Foco em DDL (Data Definition Language)
-A DDL atua diretamente na modelagem da estrutura (*blueprint*) do sistema. Ela não manipula os dados em si, mas sim os "contêineres" (tabelas e bancos) que vão armazená-los.
+DML (Manipulação): Gerencia os registros inseridos nas tabelas. (INSERT, UPDATE, DELETE)
 
-*   **`CREATE`:** Instancia novos objetos do zero. Ao criar uma tabela, é obrigatório definir os atributos (colunas) e a tipagem de dados de cada um.
-*   **`ALTER`:** Modifica a estrutura de um objeto já existente (como adicionar ou remover uma coluna de uma tabela) sem precisar excluí-lo.
-*   **`DROP`:** Operação destrutiva. Exclui permanentemente a estrutura do objeto e todos os registros armazenados em seu interior.
+DCL (Controle): Administra as permissões de acesso. (GRANT, REVOKE)
 
-### 💻 Exemplo Prático (Sintaxe Básica):
+TCL (Transação): Controla os salvamentos e a integridade do que foi feito. (COMMIT, ROLLBACK, SAVEPOINT)
 
-```sql
--- 1. CREATE: Cria a tabela e define os tipos
-CREATE TABLE Products (
-  ProductID INT,
-  ProductName VARCHAR(100)
+2. Estruturando o banco com DDL
+Focamos na categoria DDL (Data Definition Language). Aprendemos que ela não manipula o dado em si, mas constrói o "contêiner" onde ele vai ficar. Vimos como utilizar três comandos básicos:
+
+CREATE: Usamos para criar tabelas do zero. É aqui que definimos o nome dos atributos (colunas) e a tipagem de cada um.
+
+ALTER: Usamos para modificar uma estrutura que já existe. Aprendemos que dá para adicionar uma coluna nova, por exemplo, sem precisar excluir a tabela inteira.
+
+DROP: Usamos para apagar uma tabela permanentemente, destruindo tanto a estrutura quanto os registros dentro dela.
+
+3. Na Prática
+SQL
+-- 1. CREATE: Criando a tabela e definindo as colunas
+CREATE TABLE produtos (
+  id_produto INT,
+  nome_produto VARCHAR(100)
 );
 
--- 2. ALTER: Modifica a estrutura adicionando uma coluna
-ALTER TABLE Products ADD Price DECIMAL;
+-- 2. ALTER: Adicionando a coluna de preço na tabela já existente
+ALTER TABLE produtos ADD preco DECIMAL(10,2);
 
--- 3. DROP: Apaga a tabela e seus dados permanentemente
-DROP TABLE Products;
+-- 3. DROP: Excluindo a tabela e os dados de forma permanente
+DROP TABLE produtos;
