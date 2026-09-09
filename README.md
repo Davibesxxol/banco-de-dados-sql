@@ -1,67 +1,24 @@
-Na aula 2, aprendemos como a linguagem SQL é dividida e como estruturar nossas primeiras tabelas no banco de dados. Abaixo está o resumo dos conceitos.
-
-1. Categorias do SQL
-Aprendemos que os comandos são divididos em cinco grupos principais, dependendo da operação:
-
-DDL (Definição): Monta a estrutura dos objetos do banco. (CREATE, ALTER, DROP)
-
-DQL (Consulta): Busca e exibe as informações. (SELECT)
-
-DML (Manipulação): Gerencia os registros inseridos nas tabelas. (INSERT, UPDATE, DELETE)
-
-DCL (Controle): Administra as permissões de acesso. (GRANT, REVOKE)
-
-TCL (Transação): Controla os salvamentos e a integridade do que foi feito. (COMMIT, ROLLBACK, SAVEPOINT)
-
-2. Estruturando o banco com DDL
-Focamos na categoria DDL (Data Definition Language). Aprendemos que ela não manipula o dado em si, mas constrói o "contêiner" onde ele vai ficar. Vimos como utilizar três comandos básicos:
-
-CREATE: Usamos para criar tabelas do zero. É aqui que definimos o nome dos atributos (colunas) e a tipagem de cada um.
-
-ALTER: Usamos para modificar uma estrutura que já existe. Aprendemos que dá para adicionar uma coluna nova, por exemplo, sem precisar excluir a tabela inteira.
-
-DROP: Usamos para apagar uma tabela permanentemente, destruindo tanto a estrutura quanto os registros dentro dela.
-
-3. Na Prática
-SQL
--- 1. CREATE: Criando a tabela e definindo as colunas
+Aula 02: Classificação SQL e Definição Estrutural (DDL)A linguagem SQL é segmentada em subconjuntos operacionais, cada um direcionado a um propósito específico dentro da arquitetura do banco de dados.Divisão da Linguagem SQLDDL (Data Definition Language): Monta a estrutura dos objetos do banco (CREATE, ALTER, DROP).DQL (Data Query Language): Busca e exibe as informações (SELECT).DML (Data Manipulation Language): Gerencia os registros inseridos nas tabelas (INSERT, UPDATE, DELETE).DCL (Data Control Language): Administra as permissões de acesso (GRANT, REVOKE).TCL (Transaction Control Language): Controla os salvamentos e a integridade das transações (COMMIT, ROLLBACK, SAVEPOINT).Prática de DDLA DDL não manipula o dado em si, mas constrói o "contêiner" onde ele será armazenado.SQL-- 1. CREATE: Instancia a tabela e define a tipagem das colunas
 CREATE TABLE produtos (
   id_produto INT,
   nome_produto VARCHAR(100)
 );
 
--- 2. ALTER: Adicionando a coluna de preço na tabela já existente
+-- 2. ALTER: Modifica a estrutura adicionando uma nova coluna
 ALTER TABLE produtos ADD preco DECIMAL(10,2);
 
--- 3. DROP: Excluindo a tabela e os dados de forma permanente
+-- 3. DROP: Destrói a estrutura e os dados permanentemente
 DROP TABLE produtos;
+Aula 03: Manipulação de Dados (DML)Após a construção do esquema estrutural, a DML é utilizada para gerenciar o conteúdo interno, alterando os dados reais salvos nas tabelas.Comandos Principais de DMLINSERT: Adiciona novas linhas de dados. Pode ser feito via entrada manual (VALUES) ou copiando dados de outra tabela via consulta (SELECT).UPDATE: Altera informações já cadastradas. Exige obrigatoriamente a cláusula WHERE para evitar a alteração acidental de toda a tabela.DELETE: Apaga registros específicos. Assim como o update, o uso do WHERE é crítico para a segurança dos dados.Aula 04.1: Chave Estrangeira (Foreign Key)A chave estrangeira é um campo que aponta para a chave primária de outra tabela, servindo para criar o relacionamento lógico entre elas.  Por que utilizar? Sem chaves estrangeiras, as tabelas ficam isoladas, não há garantia de que os dados combinam e podem existir registros "órfãos" (dados sem relação real).  Vantagem: O banco de dados passa a garantir a integridade referencial, evitando inconsistências e representando relações do mundo real.  SQL-- Exemplo Prático da Aula: Relacionamento Cliente -> Pedido
+CREATE TABLE clientes (
+    id INT PRIMARY KEY,
+    nome VARCHAR(100)
+);
 
-
-Aula 3
-
-Nessa aula, a gente focou em entender como a DML (Data Manipulation Language) funciona na prática para mexer nos dados de dentro das tabelas, saindo da parte de criar estrutura (DDL).
-
-1. DML vs DDL
-DDL (Definição): É o que a gente usa para construir e definir o "recipiente" (a estrutura das tabelas e do banco).
-
-DML (Manipulação): É o que a gente usa para gerenciar o "conteúdo" de dentro, alterando os dados reais que ficam salvos.
-
-2. Comandos Principais de DML
-Basicamente, a gente usa três comandos principais para manipular esses dados:
-
-INSERT (Adicionar Dados)
-Usado para colocar novas linhas de dados na tabela. A gente viu que dá para fazer de dois jeitos:
-
-Método 1: Entrada Manual (VALUES)
-
-Método 2: Inserção por Consulta (SELECT)
-Dá para puxar e inserir dados em uma tabela consultando direto de outra tabela.
-
-UPDATE (Modificar Dados)
-Usado para alterar informações que já estão cadastradas.
-
-DELETE (Remover Dados)
-Usado para apagar registros que a gente não quer mais.
-
-Cuidado importante: Do mesmo jeito que o update, a gente tem que usar o WHERE para não apagar a tabela inteira sem querer.
-
+CREATE TABLE pedidos (
+    id INT PRIMARY KEY,
+    clienteId INT,
+    total DECIMAL(16,2),
+    CONSTRAINT fk_pedido_cliente FOREIGN KEY (clienteId) REFERENCES clientes(id)
+);
+Aula 05: Combinação de Dados (JOINS e SET)Existem duas formas primárias de combinar resultados de diferentes tabelas no banco de dados.JOINS (Combinação Horizontal)Conecta tabelas lateralmente através de uma coluna comum (chave).  Inner Join: Retorna apenas o que existe em ambas as tabelas.  Left Join: Mantém tudo da tabela à esquerda e traz o que houver correspondência da direita.  Right Join: Mantém tudo da direita e traz o que houver correspondência da esquerda.  Full Join: Traz tudo de ambos os lados, independentemente de haver correspondência.  Operadores SET (Combinação Vertical)Empilha resultados de consultas diferentes, exigindo que tenham a mesma estrutura de colunas.  UNION: Combina os resultados e remove automaticamente os duplicados.  UNION ALL: Combina todos os resultados, incluindo duplicados, tornando a execução mais rápida.  EXCEPT / MINUS: Retorna o que existe no primeiro conjunto, mas não no segundo.  INTERSECT: Retorna estritamente o que é comum a ambos os conjuntos.  
